@@ -9,28 +9,28 @@ import About from "../pages/About";
 import Films from "../pages/Films";
 
 describe("Index component", () => {
-    test("renders the Films page", () => {
-        const router = createBrowserRouter([
-            {
-            path: "/",
-            element: <Films />,
-            },
-            {
-            path: "about",
-            element: <About />,
-            },
-            {
-            path: "films",
-            element: <Films />,
-            },
-        ]);
+  test("renders the Films page", () => {
+    const router = createBrowserRouter([
+      {
+        path: "/",
+        element: <Films />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "films",
+        element: <Films />,
+      },
+    ]);
 
     render(
-        <Provider store={store}>
+      <Provider store={store}>
         <RouterProvider router={router} />
-        </Provider>
+      </Provider>
     );
     const filmsPage = screen.getByText("Star Wars Films");
     expect(filmsPage).toBeInTheDocument();
-    });
+  });
 });

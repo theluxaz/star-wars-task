@@ -1,10 +1,6 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import {
-  Box,
-  CssBaseline,
-  Container,
-} from "@mui/material";
+import { Box, CssBaseline, Container } from "@mui/material";
 
 import "./About.css";
 

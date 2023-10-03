@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  CardActionArea,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, CardActionArea } from "@mui/material";
 import "./FilmBox.css";
 import { Film } from "../static/types";
 

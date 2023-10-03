@@ -20,6 +20,8 @@ describe("About component", () => {
       </MemoryRouter>
     );
     const paragraphElement = screen.getByTestId("about-text").innerHTML;
-    expect(paragraphElement).toContain("Star wars is an American epic space opera multimedia franchise created by George Lucas, which began with the eponymous 1977 film and quickly became a worldwide pop culture phenomenon.");
+    expect(paragraphElement).toContain(
+      "Star wars is an American epic space opera multimedia franchise created by George Lucas, which began with the eponymous 1977 film and quickly became a worldwide pop culture phenomenon."
+    );
   });
 });

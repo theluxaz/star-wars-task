@@ -21,8 +21,7 @@ import {
 import "./Films.css";
 import { fetchCharactersSuccess } from "../redux/characterSlice";
 import { Film, Character } from "../static/types";
-
-const TESTING = true;
+import { TESTING, API_URL} from "../constants";
 
 interface CharacterList {
   episode_id: number;
@@ -48,20 +47,23 @@ const Films: React.FC = () => {
   );
   const [status_characters, setLoadingCharacters] = useState<string>("");
 
+  
   useEffect(() => {
     if (TESTING) {
       dispatch(fetchFilmsSuccess(films_json.results));
     } else if (status_films !== "fulfilled" && films.length === 0) {
       dispatch(fetchFilmsLoading());
       axios
-        .get("https://swapi.dev/api/films/")
+        .get(API_URL+"films/")
         .then((response) => {
           dispatch(fetchFilmsSuccess(response.data.results));
         })
-        .catch(() => {
+        .catch((error) => {
+          console.error(error);
           dispatch(fetchFilmsFailure());
         });
     }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const showPeople = async (selected_film: Film, character_urls: string[]) => {
@@ -88,7 +90,7 @@ const Films: React.FC = () => {
     } else {
       const characterData = await Promise.all(
         character_urls.map(async (url) => {
-          const response = await axios.get<Character>(url); //"https://cors-anywhere.herokuapp.com/"+
+          const response = await axios.get<Character>(url);
           return response.data;
         })
       ).catch((error) => {
@@ -134,8 +136,8 @@ const Films: React.FC = () => {
           <CircularProgress />
         ) : (
           <Box className="films-container">
-            {films.map((film) => (
-              <FilmBox film={film} showPeople={showPeople} />
+            {films.map((film,index) => (
+              <FilmBox key={index} film={film} showPeople={showPeople} />
             ))}
           </Box>
         )}
@@ -145,34 +147,37 @@ const Films: React.FC = () => {
         {selected_film.episode_id !== 0 ? (
           <>
             <h1>People in {selected_film.title}</h1>
+
+            
             {status_characters === "loading" ? (
               <CircularProgress />
             ) : (
-              <>
+
+
+              (status_characters === "failed" ? (
+                <Alert severity="error">
+                  <AlertTitle>Unexpected Error</AlertTitle>
+                  Something went wrong. Please try to refresh the page or try again
+                  later.
+                </Alert>
+              ) : (
                 <Box className="films-container">
                   <CharactersTable
                     data-testid={"character-table"}
                     characters={characterList.characters}
                   />
                 </Box>
-              </>
+              ))
+
             )}
           </>
-        ) : status_films === "loading" ? (
+        ) : (status_films === "loading" ? (
           ""
         ) : (
           <h1>Choose a film...</h1>
-        )}
+        ))}
 
-        {status_characters === "failed" ? (
-          <Alert severity="error">
-            <AlertTitle>Unexpected Error</AlertTitle>
-            Something went wrong. Please try to refresh the page or try again
-            later.
-          </Alert>
-        ) : (
-          ""
-        )}
+       
       </Container>
     </Box>
   );
