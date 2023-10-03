@@ -4,7 +4,6 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./pages/About";
 import Films from "./pages/Films";
-import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
@@ -34,5 +33,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-
-reportWebVitals();

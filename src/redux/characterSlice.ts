@@ -28,7 +28,6 @@ export const characterSlice = createSlice({
       } else {
         state.character_lists.push(action.payload);
       }
-      console.log("after", current(state));
     },
   },
 });

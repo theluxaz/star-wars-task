@@ -15,7 +15,7 @@ const About: React.FC = () => {
       <Sidebar />
       <Container maxWidth={false}>
         <h1>About Star Wars</h1>
-        <p>
+        <p data-testid="about-text">
           Star wars is an American epic space opera multimedia franchise created
           by George Lucas, which began with the eponymous 1977 film and quickly
           became a worldwide pop culture phenomenon. The franchise has been

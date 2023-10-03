@@ -150,7 +150,10 @@ const Films: React.FC = () => {
             ) : (
               <>
                 <Box className="films-container">
-                  <CharactersTable characters={characterList.characters} />
+                  <CharactersTable
+                    data-testid={"character-table"}
+                    characters={characterList.characters}
+                  />
                 </Box>
               </>
             )}

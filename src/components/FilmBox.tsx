@@ -18,6 +18,7 @@ const FilmBox: React.FC<FilmBoxProps> = (FilmBoxProps) => {
   return (
     <Card variant="outlined" className="film-card">
       <CardActionArea
+        data-testid={`show-people-button-${episode_id}`}
         onClick={() => FilmBoxProps.showPeople(FilmBoxProps.film, characters)}
       >
         <CardMedia
