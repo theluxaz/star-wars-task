@@ -1,0 +1,22 @@
+
+  .app {
+    display: flex;
+  }
+  
+  .content {
+    /* flex-grow: 1; */
+    padding: 0px;
+    display: flex;
+    margin-left: 90px;
+    flex-direction: column;
+    width: 90%;
+  
+  }
+  
+  .films-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    width: 100%;
+  }
+
